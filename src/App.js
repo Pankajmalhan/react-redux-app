@@ -4,10 +4,13 @@ import BugStatus from "./components/bugStatus/bugStatusComponent";
 import AddBug from "./components/addBug/addBugComponent";
 import BugList from "./components/bugList/bugListComponent";
 import "./App.css";
-
+import store from './store/appStore';
+import {Provider} from 'react-redux';
 class App extends Component {
   render() {
+    console.log({store},store.getState())
     return (
+      <Provider store={store}> 
       <div role="main" class="container">
         <div class="row row-offcanvas row-offcanvas-right">
           <div class="col-12 col-md-9">
@@ -20,6 +23,7 @@ class App extends Component {
         </div>
         <hr />
       </div>
+      </Provider>
     );
   }
 }

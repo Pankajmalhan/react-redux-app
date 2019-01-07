@@ -1,0 +1,50 @@
+step 1:
+run  npm i redux react-redux command
+step 2:
+define intial state
+var intialState={
+    bugsList:[],
+    generalInfo:null
+}
+state 3:
+define reduer
+import intialState from '../state/state';
+export default function bugReducer(state=intialState.bugsList, action) {
+    switch(action.type){
+        case 'Load_Category':
+                return 100
+        
+
+    };
+    return state;
+}
+
+state 4:
+create store
+import {createStore, applyMiddleware,compose    } from 'redux';
+import appReducers from '../reducers/bugReducer';
+import INITIAL_STATE from '../state/state';
+/*********** Create Logger   *******************/
+const store = createStore(
+    appReducers,
+    INITIAL_STATE,
+);
+export default store;
+
+
+state 5:
+add provider in root component
+<Provider store={store}> 
+      <div role="main" class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+          <div class="col-12 col-md-9">
+            <AddBug />
+            <BugList />
+          </div>
+          <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+            <BugStatus />
+          </div>
+        </div>
+        <hr />
+      </div>
+      </Provider>
