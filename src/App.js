@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import BugStatus from "./components/bugStatus/bugStatusComponent";
+import AddBug from "./components/addBug/addBugComponent";
+import BugList from "./components/bugList/bugListComponent";
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div role="main" class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+          <div class="col-12 col-md-9">
+            <AddBug />
+            <BugList />
+          </div>
+          <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+            <BugStatus />
+          </div>
+        </div>
+        <hr />
       </div>
     );
   }
