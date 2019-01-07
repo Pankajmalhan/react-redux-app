@@ -48,3 +48,59 @@ add provider in root component
         <hr />
       </div>
       </Provider>
+
+
+
+import { combineReducers } from 'redux';
+export default combineReducers({
+    groups:groupReducer,
+    global:globalReducer,
+    usageReducer: usageReducer,
+    feedsReducer: feedsReducer,
+    profileReducer: profileReducer,
+    groupAnalyticsReducer: groupAnalyticsReducer,
+    itemCount:itemCount,
+    users:userReducer,
+    firebase:firebaseReducer,
+});
+
+
+
+
+*******************************
+export const getUserSpaceCredentials=(data) => {
+    return {
+        type: GET_USER_SPACE_CREDENTIALS
+    }
+}
+
+
+************************************
+
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+function mapStateToProps(state) {
+  return {
+    groupEvents: state.groups.groupEvents,
+    showLoader: state.groups.showLoader,
+    actionStatus: state.global.actionStatus
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      getGroupEvents: getGroupEvents,
+      addGroupEvent: addGroupEvent,
+      updateGroupEvent: updateGroupEvent,
+      setExecutedActionStatus: setExecutedActionStatus,
+      loadGroupDetails: loadGroupDetails
+    },
+    dispatch
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventScreen);
