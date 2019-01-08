@@ -1,49 +1,32 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 class BugList extends Component {
   render() {
+    console.log(this.props,"component")
     return (
       <>
-        <h4>Bug List</h4>
-        <table class="table table-bordered">
+        <h4>{this.props.message}</h4>
+        <table className="table table-bordered">
           <thead>
             <tr>
               <th scope="col">BugId</th>
               <th scope="col">Project</th>
               <th scope="col">Description</th>
-              <th scope="col">Status</th>
               <th scope="col">Priority</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Health</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Health</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@TwBootstrap</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Health</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Health</td>
-              <td>Larry the Bird</td>
-              <td>Thornton</td>
-              <td>@twitter</td>
-            </tr>
+            {
+              this.props.bugList.map((item)=><tr key={item.id}>
+              <th scope="row">{item.id}</th>
+              <td>{item.project}</td>
+              <td>{item.description}</td>
+              <td>{item.priority}</td>
+            </tr>)
+            }
+            
           </tbody>
         </table>
       </>
@@ -51,4 +34,24 @@ class BugList extends Component {
   }
 }
 
-export default BugList;
+function mapStateToProps(state) {
+  return {
+    bugList: state.bug.bugsList,
+    message:state.global
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      
+    },
+    dispatch
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BugList);
+

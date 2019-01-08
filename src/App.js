@@ -8,16 +8,16 @@ import store from './store/appStore';
 import {Provider} from 'react-redux';
 class App extends Component {
   render() {
-    console.log({store},store.getState())
+    console.log(store.getState())
     return (
       <Provider store={store}> 
-      <div role="main" class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
-          <div class="col-12 col-md-9">
+      <div role="main" className="container">
+        <div className="row row-offcanvas row-offcanvas-right">
+          <div className="col-12 col-md-9">
             <AddBug />
             <BugList />
           </div>
-          <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+          <div className="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
             <BugStatus />
           </div>
         </div>
